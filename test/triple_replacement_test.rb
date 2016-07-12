@@ -7,26 +7,26 @@ require_relative '../lib/library.rb'
 class TripleReplacementTest < MiniTest::Test
 
   def test_it_can_print_one_line
-    print_try = TripleReplacement.new(1)
+    print_try = TripleReplacement.new("1")
 
-    assert_equal 1, print_try.print_one_line
+    assert_equal "1", print_try.print_one_line
   end
 
   def test_it_can_print_three_lines
 
     print_try = TripleReplacement.new("1")
 
-    assert_equal "1""\n1""\n1", print_try.print_three_lines
+    assert_equal "1\n1\n1", print_try.print_three_lines
   end
 
   def test_braille_splitter#unfinished
-    skip
     print_try = TripleReplacement.new("......")
 
-    assert_equal "..\n..\n.."
+    assert_equal "..\n..\n..", print_try.braille_splitter
   end
 
   def test_breaks_it_into_three_arrays
+    skip
     print_try = TripleReplacement("......")
 
     assert_equal asdf, print_try.breaker

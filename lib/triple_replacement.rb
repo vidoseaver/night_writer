@@ -1,5 +1,5 @@
 class TripleReplacement
-  def
+
   def initialize(input)
     @input = input
     @line1 = []
@@ -9,15 +9,13 @@ class TripleReplacement
   end
 
   def print_one_line
-    p @input
+    "#{@input}"
   end
 
   def print_three_lines
-    puts @input
-    puts @input
-    puts @input
+    "#{@input}\n#{@input}\n#{@input}"
   end
-  
+
 
 
 end
