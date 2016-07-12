@@ -13,8 +13,8 @@ class Library
     @numbers_to_braille_library = {"1"=>"0.....", "2"=>"0.0...", "3"=>"00....", "4"=>"00.0..", "5"=>"0..0..", "6"=>"000...", "7"=>"0000..", "8"=>"0.00..", "9"=>".00...", "0"=>".000.."}
     @braille_to_numbers_library = {"0....."=>"1", "0.0..."=>"2", "00...."=>"3", "00.0.."=>"4", "0..0.."=>"5", "000..."=>"6", "0000.."=>"7", "0.00.."=>"8", ".00..."=>"9", ".000.."=>"0"}
     @braille_to_numbers_switchs = {"capital"=>".....0", ".....0"=>"capital", }
-    @braille_to_symbols_library = {"..000."=>"!", "....0."=>"'", "..0..."=>",", "....00"=>"-", "..00.0"=>".", "..0.00"=>"?"}
-    @symbols_to_braille_library =  {"!"=>"..000.", "'"=>"....01", ","=>"..0...", "-"=>"....00", "."=>"..00.0", "?"=>"..0.00"}
+    @braille_to_symbols_library = {"......" => " ", "..000."=>"!", "....0."=>"'", "..0..."=>",", "....00"=>"-", "..00.0"=>".", "..0.00"=>"?"}
+    @symbols_to_braille_library =  {" " =>"......", "!"=>"..000.", "'"=>"....01", ","=>"..0...", "-"=>"....00", "."=>"..00.0", "?"=>"..0.00"}
 	  @shifters_library = {".....0"=>"capital", ".0.000"=>"number", "capital"=>".....0", "number"=>".0.000"}
     @input = input
     @characters_in_order = []
@@ -53,6 +53,16 @@ class Library
   def return_letter
     scanner(@braille_to_alphabet_library)
   end
+
+  def return_braille_space
+    scanner(@symbols_to_braille_library)
+  end
+
+  def return_space
+    scanner(@braille_to_symbols_library)
+  end
+
+
 
 
 end
