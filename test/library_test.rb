@@ -44,5 +44,4 @@ class LibraryTest < MiniTest::Test
     lib2 = Library.new("0000..")
     assert_equal "7", lib2.return_number
   end
-
 end
