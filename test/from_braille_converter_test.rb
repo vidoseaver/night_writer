@@ -2,12 +2,12 @@ gem 'minitest', '~> 5.2'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/library.rb'
-require './lib/from_braille'
+require './lib/from_braille_converter'
 
 class FromBrailleTest < MiniTest::Test
 
   def test_it_returns_a_symbol
-    lib1 = Library.new("..0...")
+    lib1 = Brail.new("..0...")
     assert_equal ",", lib1.return_symbol
     lib2 = Library.new("..000.")
     assert_equal "!", lib2.return_symbol

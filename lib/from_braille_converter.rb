@@ -1,11 +1,13 @@
 require "./lib/library"
 
-class FromBraille
-
-
-
-
-
+class FromBraille < Library
+  attr_reader :letters_to_braille,
+              :numbers_to_braille,
+              :symbols_to_braille,
+              :braille_to_letters,
+              :braille_to_numbers,
+              :braille_to_symbols,
+              :input
 
 
   def scanner(library_to_search)
