@@ -29,16 +29,16 @@ puts "Created '#{filename}' containing #{file_read.length} characters."
 
 #takes letters and translates to braille
 letters = file_read.chars.map.with_index do |letter, index|
-  letter_class = Library.new(letter)
+  library_input = Library.new(letter)
 
   case
   when letter == " "
-    "#{letter_class.return_braille_space}"
+    "#{library_input.return_braille_space}"
   when letter.upcase == letter
-    letter_class = Library.new(letter.downcase)
-    ".....0 #{letter_class.return_braille_lowercase}"
-  when letter_class.return_braille_lowercase?
-    "#{letter_class.return_braille_lowercase}"
+    library_input = Library.new(letter.downcase)
+    ".....0 #{library_input.return_braille_lowercase}"
+  when library_input.return_braille_lowercase?
+    "#{library_input.return_braille_lowercase}"
   end
 end
 
@@ -55,59 +55,59 @@ letters.flatten!
  p letters
       #braille to letter translator
   letters = letters.map.with_index do |letter, index|
-    letter_class = Library.new(letter)
+    library_input = Library.new(letter)
     case
     when  letter == "......"
-      "#{letter_class.return_space}"
+      "#{library_input.return_space}"
     when letter == ".....0"
-      letter_class = Library.new(letters[index+1])
+      library_input = Library.new(letters[index+1])
       letters.delete_at(index+1)
-      "#{letter_class.return_uppercase_letter}"
-    when letter_class.return_letter?
-       "#{letter_class.return_letter}"
+      "#{library_input.return_uppercase_letter}"
+    when library_input.return_letter?
+       "#{library_input.return_letter}"
     when letter == ".0.000"
-    else"#{letter_class.return_number}"
+    else"#{library_input.return_number}"
 
     end
   end
 
   p letters
 #   #this code will make it printable to file in braille format
-#   @top_line = []
-#   @middle_line = []
-#   @bottom_line = []
-#
-#   def chunk(string, size)
-#       string.scan(/.{1,#{size}}/)
-#   end
-#
-#   def split_string(braille)
-#
-#   	braille.each do |num|
-#   	    @top_line    << num[0..1]
-#   	    @middle_line << num[2..3]
-#   	    @bottom_line << num[4..5]
-#   	end
-#
-#   end
+  @top_line = []
+  @middle_line = []
+  @bottom_line = []
+
+  def chunk(string, size)
+      string.scan(/.{1,#{size}}/)
+  end
+
+  def split_string(braille)
+
+  	braille.each do |num|
+  	    @top_line    << num[0..1]
+  	    @middle_line << num[2..3]
+  	    @bottom_line << num[4..5]
+  	end
+
+  end
 #
 # #
-#
-# split_string(letters)
-#   @top_line = @top_line.join
-#   @middle_line = @middle_line.join
-#   @bottom_line = @bottom_line.join
-#
-#
-#   @top_line = chunk(@top_line, 160)
-#   @middle_line = chunk(@middle_line, 160)
-#   @bottom_line = chunk(@bottom_line, 160)
-#   if @top_line[0].length < 160
-#   	p @top_line.length
-#   	p @middle_line.length
-#   	p @bottom_line.length
-#   else
-#   	final = []
-#   	@top_line = @top_line.zip(@middle_line, @bottom_line)
-#   	@top_line.flatten
-#   end
+# works with above class to limit lines to a number of chars
+split_string(letters)
+  @top_line = @top_line.join
+  @middle_line = @middle_line.join
+  @bottom_line = @bottom_line.join
+
+
+  @top_line = chunk(@top_line, 160)
+  @middle_line = chunk(@middle_line, 160)
+  @bottom_line = chunk(@bottom_line, 160)
+  if @top_line[0].length < 160
+  	p @top_line.length
+  	p @middle_line.length
+  	p @bottom_line.length
+  else
+  	final = []
+  	@top_line = @top_line.zip(@middle_line, @bottom_line)
+  	@top_line.flatten
+  end
