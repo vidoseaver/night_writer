@@ -2,12 +2,6 @@ require "./lib/library"
 
 class FromBraille
 
-
-
-
-
-
-
   def scanner(library_to_search)
     library_to_search.each do |key, value|
       if @input == key
