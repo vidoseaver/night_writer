@@ -1,4 +1,6 @@
+require "pry"
 require "./lib/library"
+require "./lib/braille_parser"
 
 class FromStringToBraille
 
@@ -14,18 +16,21 @@ class FromStringToBraille
           library_input = Library.new(letter)
 
           case
-          when letter == " "
-            "#{library_input.return_braille_space}"
+          when library_input.return_braille_symbol?
+            library_input.return_braille_symbol
           when letter.upcase == letter
             library_input = Library.new(letter.downcase)
-            ".....0 #{library_input.return_braille_lowercase}"
+            ".....0 "+ library_input.return_braille_lowercase
           when library_input.return_braille_lowercase?
             "#{library_input.return_braille_lowercase}"
-          end
+          when library_input.return_braille_number?
+            library_input.return_braille_number
         end
       end
+    end
       #takse an array of braille letter and breaks the caps into singles
       def caps_killer
+        converter
         @braille_letters = @input.map do |letter|
           if letter.length > 6
             letter.split(" ")
@@ -35,10 +40,10 @@ class FromStringToBraille
         end
         @braille_letters.flatten
       end
-      
+
 end
 
-string = "Here is a string"
+string = "Here is a string."
 
 trial_of_converter = FromStringToBraille.new(string)
 
